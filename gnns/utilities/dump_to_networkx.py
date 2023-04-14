@@ -11,8 +11,6 @@ dataset = TUDataset(root=data_root, name=dataset_name)
 
 all_graphs = []
 
-
-
 for data in dataset:
     g: nx.Graph  = torch_geometric.utils.to_networkx(data, to_undirected=True)
     all_graphs.append(g)
