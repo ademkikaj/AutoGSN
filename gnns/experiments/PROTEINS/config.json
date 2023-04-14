@@ -1,0 +1,27 @@
+{
+    "model": {
+        "seed": 0,
+        "batch_size": 32,
+        "hidden_channel": 32,
+        "learning_rate": 0.01,
+        "layers": 4,
+        "scheduler": true,
+        "step_size": 10,
+        "decay": 0.5,
+        "dropout": 0.5,
+        "folds": 10,
+        "epochs": 351
+    },
+    "features": [
+        {
+            "name": "PROTEINS_779_top_20_xgb_selected_features",
+            "labelled": true,
+            "device": "cuda:1"
+        },
+        {
+            "name": "PROTEINS_779_top_20_xgb_selected_features",
+            "labelled": false,
+            "device": "cuda:1"
+        }
+    ]
+}

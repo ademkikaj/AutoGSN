@@ -1,0 +1,27 @@
+{
+    "model": {
+        "seed": 0,
+        "batch_size": 128,
+        "hidden_channel": 16,
+        "learning_rate": 0.001,
+        "layers": 4,
+        "scheduler": true,
+        "step_size": 50,
+        "decay": 0.9,
+        "dropout": 0,
+        "folds": 10,
+        "epochs": 351
+    },
+    "features": [
+        {
+            "name": "PTC_MR_30_top_4_mi_selected_features",
+            "labelled": false,
+            "device": "cuda:1"
+        },
+        {
+            "name": "PTC_MR_30_top_4_mi_selected_features",
+            "labelled": true,
+            "device": "cuda:1"
+        }
+    ]
+}

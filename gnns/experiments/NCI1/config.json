@@ -1,0 +1,22 @@
+{
+    "model": {
+        "seed": 0,
+        "batch_size": 32,
+        "hidden_channel": 32,
+        "learning_rate": 0.001,
+        "layers": 4,
+        "scheduler": true,
+        "step_size": 10,
+        "decay": 0.9,
+        "dropout": 0,
+        "folds": 10,
+        "epochs": 351
+    },
+    "features": [
+        {
+            "name": "NCI1_G_3699",
+            "labelled": true,
+            "device": "cuda:1"
+        }
+    ]
+}
