@@ -24,12 +24,7 @@ if "x" in tmp_graph:
     graph_node_feature = True
 if "edge_attr" in tmp_graph:
     graph_edge_feature = True
-
-print(graph_node_feature)
-print(graph_edge_feature)
-
 all_graphs = []
-
 for data in dataset:
     if graph_node_feature and graph_edge_feature:
         g: Graph = torch_geometric.utils.to_networkx(data, to_undirected=True)
@@ -59,6 +54,5 @@ for data in dataset:
         for i, edge in enumerate(g.edges):
             g.add_edge(edge[0], edge[1], label=0)
         all_graphs.append(g)
-print(len(all_graphs))
 with open(data_save, "wb") as file:
     pickle.dump(all_graphs, file)
