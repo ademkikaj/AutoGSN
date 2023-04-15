@@ -36,7 +36,7 @@ This command will convert TUD to Networkx and it will save a `{dataset}.dat` fil
 
 Next, copy the generated `{dataset}.dat` file to `gspan/data_nx/{dataset}/{dataset}.dat`. Well-known dataset `MUTAG` already exists as an example.
 
-Next we have to convert `networkx` data to a specific input that can be used with `gSpan`. To do so run the following command within the `gSpan` project.
+Next we have to convert `networkx` data to a specific format that can be used with `gSpan`. To do so run the following command within the `gSpan` project.
 
 ```bash
 # python utilities/nx_to_graph.py -d {dataset_name}
