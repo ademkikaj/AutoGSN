@@ -1,3 +1,4 @@
+import torch
 import torch_geometric, os, pickle, networkx as nx
 from torch_geometric.datasets import TUDataset
 from networkx import Graph
@@ -24,30 +25,40 @@ if "x" in tmp_graph:
 if "edge_attr" in tmp_graph:
     graph_edge_feature = True
 
+print(graph_node_feature)
+print(graph_edge_feature)
+
 all_graphs = []
 
 for data in dataset:
-    g: Graph = None
     if graph_node_feature and graph_edge_feature:
-        g: Graph = torch_geometric.utils.to_networkx(
-            data,
-            node_attrs=["x"],
-            edge_attrs=["edge_attr"],
-            to_undirected=True,
-        )
+        g: Graph = torch_geometric.utils.to_networkx(data, to_undirected=True)
+        for index, node_attr in enumerate(data.x):
+            g.add_node(index, label=int(torch.argmax(node_attr)))
+        for i, edge in enumerate(g.edges):
+            g.add_edge(edge[0], edge[1], label=int(torch.argmax(data.edge_attr[i])))
+        all_graphs.append(g)
     elif graph_node_feature:
-        g: Graph = torch_geometric.utils.to_networkx(
-            data,
-            node_attrs=["x"],
-            to_undirected=True,
-        )
+        g: Graph = torch_geometric.utils.to_networkx(data, to_undirected=True)
+        for index, node_attr in enumerate(data.x):
+            g.add_node(index, label=int(torch.argmax(node_attr)))
+        for i, edge in enumerate(g.edges):
+            g.add_edge(edge[0], edge[1], label=0)
+        all_graphs.append(g)
     elif graph_edge_feature:
-        g: Graph = torch_geometric.utils.to_networkx(
-            data,
-            edge_attrs=["edge_attr"],
-            to_undirected=True,
-        )
-    all_graphs.append(g)
+        g: Graph = torch_geometric.utils.to_networkx(data, to_undirected=True)
+        for node in g.nodes:
+            g.add_node(node, label=0)
+        for i, edge in enumerate(g.edges):
+            g.add_edge(edge[0], edge[1], label=int(torch.argmax(data.edge_attr[i])))
+        all_graphs.append(g)
+    else:
+        g: Graph = torch_geometric.utils.to_networkx(data, to_undirected=True)
+        for node in g.nodes:
+            g.add_node(node, label=0)
+        for i, edge in enumerate(g.edges):
+            g.add_edge(edge[0], edge[1], label=0)
+        all_graphs.append(g)
 print(len(all_graphs))
 with open(data_save, "wb") as file:
     pickle.dump(all_graphs, file)
