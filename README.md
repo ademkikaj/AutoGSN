@@ -6,7 +6,7 @@ This project includes three different subprojects:
 -   A discriminative subgraph mining project based on [GAIA](https://dl.acm.org/doi/pdf/10.1145/1807167.1807262?casa_token=G-mvu1_NCJgAAAAA:4ToovRUGv-i_YrmH8SxNQP15J3hTY-N0rq49oNgp1h45khNM6c3cgwcQjKGe66q-05jZeFXg8Kfr)
 -   A `pytorch` environment that encodes features (preprocesses graph data) produced by `gSpan` and `GAIA` and trains on processed data
 
-# How-to
+# Setup
 
 -   gSpan setup
     -   Create a virtual environment `env` within `gSpan` project by running `python3 -m venv env`.
@@ -55,3 +55,7 @@ Now that we have `.graph` data we can generate relational features by running th
 # for example if we want to generate subgraphs of MUTAG with 90%, run the following
 python app.py -d MUTAG -s 90 -n 188
 ```
+
+This command should generate 13 subgraphs and save them under `/data_nx_features/{dataset}.dat`.
+
+###
