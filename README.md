@@ -1,4 +1,4 @@
-# Project Descriptoon
+# Project Descripton
 
 This project includes three different subprojects:
 
@@ -12,3 +12,12 @@ This project includes three different subprojects:
     -   Create a virtual environment `env` within `gSpan` project by running `python3 -m venv env`.
     -   Install packages by running `pip install -r requirements.txt`
     -   Replace the files `gspan.py` and `graph.py` at `env/lib/python3/site-packages/gspan_mining/` with the files provided at `gspan/nx_support/`
+-   GAIA setup
+    -   Download link and instruction of GAIA can be found [here](https://sourceforge.net/projects/discriminatives/)
+-   PyTorch Environment
+    -   Create a virtual environment `env` within `gnns` project by running `python3 -m venv env`.
+    -   Install packages by running `pip install -r requirements.txt`
+
+# Experiments
+
+-   TUD Datasets to gSpan graphs
