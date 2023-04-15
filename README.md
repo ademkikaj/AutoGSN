@@ -20,9 +20,24 @@ This project includes three different subprojects:
 
 # Experiments
 
--   Since we use TUD Benchmark, we need to convert TUD data to [Networkx](https://networkx.org/documentation/stable/index.html) data. To do so run the following command within the `pytorch` project
-    ```
-    # python utilities/convert.py -d {dataset_name}
-    # for example if we want to convert MUTAG to Networkx, run the following
-    python utilities/convert.py -d MUTAG
-    ```
+## Prepare data for gSpan
+
+Since we use TUD Benchmark, we need to convert TUD data to [Networkx](https://networkx.org/documentation/stable/index.html) data. To do so run the following command within the `pytorch` project.
+
+```bash
+# python utilities/convert.py -d {dataset_name}
+# for example if we want to convert MUTAG to Networkx, run the following
+python utilities/convert.py -d MUTAG
+```
+
+This command will convert TUD to Networkx and it will save a `{dataset}.dat` file under `pytorch/data_networkx/{dataset}.dat`.
+
+Next, copy the generated `{dataset}.dat` file to `gspan/data_nx/{dataset}/{dataset}.dat`. Well-known dataset `MUTAG` already exists as an example.
+
+Next we have to convert `networkx` data to a specific input that can be used with `gSpan`. To do so run the following command within the `gSpan` project.
+
+```bash
+# python utilities/nx_to_graph.py -d {dataset_name}
+# for example if we want to convert MUTAG to Networkx, run the following
+python utilities/nx_to_graph.py -d MUTAG
+```

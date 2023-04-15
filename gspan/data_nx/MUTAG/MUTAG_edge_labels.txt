@@ -1,4 +1,0 @@
-aromatic
-single
-double
-triple
