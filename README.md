@@ -20,7 +20,7 @@ This project includes three different subprojects:
 
 # Experiments
 
-## Generating Relational Features
+## 1. Generating Relational Features
 
 ### Preparing data for gSpan
 
@@ -58,7 +58,7 @@ python app.py -d MUTAG -s 90 -n 188
 
 This command should generate 13 subgraphs and save them under `/data_nx_features/{dataset_support}.dat`.
 
-## Preprocessing TUD datasets and Training
+## 2. Preprocessing TUD datasets and Training
 
 ### Creating an experiment
 
@@ -86,3 +86,53 @@ pytorch/
       results/
       config.json
 ```
+
+The `config.json` contains configuration about the model hyperparameters and data preprocessing. For example, if we want to encode relational features from the file `MUTAG_90.dat`, with and without labels, the following configuration should be provided.
+
+```json
+{
+    "model": {
+        "seed": 0,
+        "batch_size": 32,
+        "hidden_channel": 32,
+        "learning_rate": 0.001,
+        "layers": 4,
+        "scheduler": true,
+        "step_size": 50,
+        "decay": 0.9,
+        "dropout": 0.5,
+        "folds": 10,
+        "epochs": 351
+    },
+    "features": [
+        {
+            "name": "MUTAG_90",
+            "labelled": false,
+            "device": "cuda:0"
+        },
+        {
+            "name": "MUTAG_90",
+            "labelled": true,
+            "device": "cuda:1"
+        }
+    ]
+}
+```
+
+Once the `config.json` is ready, first preprocess the data by running the following command within `pytorch` project:
+
+```bash
+#python preprocess.py -d {experiment}
+python preprocess.py -d MUTAG
+```
+
+This command will preprocess the data and provide the new processed dataset under the `pytorch/experiments/{dataset}/data/processed/`
+
+Now to train, simply run the following command within `pytorch` project:
+
+```bash
+#python preprocess.py -d {experiment}
+python train.py -d MUTAG
+```
+
+This command will train based on the configurations given in the `config.json` file of an experiment. This will generate results based on the dataset name under the `pytorch/experiments/{dataset}/results/{dataset}_{label}.json`.
