@@ -70,7 +70,7 @@ python utilities/tud_to_gaia.py -d MUTAG
 
 Once the files are ready, move them to `GAIA` directory and follow the instructions on how to use `GAIA`.
 
-For `MUTAG` dataset `GAIA` should generate six discriminative features. Generated features are save in a file under the name `patternResult.txt`. Now, to convert these features to `Networkx` format move the file under `gspan/data_gaia/{dataset_name}/patternResult.txt` and run the following command within the `gspan` environment:
+For `MUTAG` dataset `GAIA` should generate six discriminative features. Generated features are saved in a file under the name `patternResult.txt`. Now, to convert these features to `Networkx` format move the file under `gspan/data_gaia/{dataset_name}/patternResult.txt` and run the following command within the `gspan` environment:
 
 ```bash
 # python gaia_to_nx.py -d {dataset_name} -nf {nr_of_node_features/node_labels}
