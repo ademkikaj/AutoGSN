@@ -80,6 +80,20 @@ python gaia_to_nx.py -d MUTAG -nf 7
 
 This command will create a new file under `gspan/data_gaia/{dataset_name}/{dataset_name}_gaia_nx.dat`.
 
+### Subgraph and Feature Selection
+
+To make use of feature selection methods, we need to _flatten_ the graphs and their respective features genereated by one of the methods listed above.
+
+Feature Selection make use of target variable of the dataset, so we need to extract that first. To do so, run the following command within the `pytorch` environment:
+
+```bash
+# python utilities/target_extraction.py -d {dataset_name}
+# for example utilities/target_extraction.py -d MUTAG
+python utilities/target_extraction.py -d {dataset_name}
+```
+
+This command will extract the target value and save it in a file under `data_networkx/{dataset_name}_target.dat`. Now the feature selection methods exist within the `gspan` environment.
+
 ## 2. Preprocessing TUD datasets and Training
 
 ### Creating an experiment
