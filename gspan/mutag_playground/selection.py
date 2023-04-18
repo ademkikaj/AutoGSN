@@ -184,6 +184,11 @@ features = args.features
 
 graph_features = load_graph_features(features)
 print("Loaded %d features" % len(graph_features))
+if len(graph_features) <= int(args.k_features):
+    raise SystemExit(
+        "The set of features is smaller than the given k. Size of the set of features is %d and given k is %d."
+        % (len(graph_features), int(args.k_features))
+    )
 graph_dataset = load_all_graphs(dataset_name)
 dataset_labels = load_labels(dataset_labels)
 
